@@ -49,6 +49,7 @@
     var brickOffsetTop = 30;
     var brickOffsetLeft = 30;
     var gameOverNotify = document.querySelector('.game-over-notify');
+    var score = 0;
 
     var bricks = [];
 
@@ -117,7 +118,7 @@
         }
     }
 
-    function collisionDetection(){
+    function collisionDetection() {
         for (var c = 0; c < brickColumnCount; c++) {
             for (var r = 0; r < brickRowCount; r++) {
                 var b = bricks[c][r];
@@ -130,18 +131,26 @@
                         ctx.fillStyle = "#320179";
                         ctx.fill();
                         ctx.closePath();
+                        score++;
                     }
                 }
             }
         }
     }
-    
+
+    function drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: "+score, 8, 20);
+    }
+
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBall();
         drawPaddle();
         drawBricks();
         collisionDetection();
+        drawScore();
 
         if(y + dy < ballRadius) //Si la balle est supérieur à la limite de la fenêtre
         {
