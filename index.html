@@ -5,7 +5,7 @@
     <title>Gamedev Canvas Workshop</title>
     <style>
      * { padding: 0; margin: 0; }
-     canvas { background: #22221A; display: block; margin: 0 auto; }
+     canvas { background: rgba(173, 173, 172, 0.829); display: block; margin: 0 auto; }
      .game-over-notify {
         position: fixed;
         display: none;
@@ -61,7 +61,7 @@
 
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
-    gameOverNotify.addEventListener("escape", function() {
+    gameOverNotify.addEventListener("click", function() {
         document.location.reload();
     });
 
@@ -86,7 +86,7 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#F6F600";
         ctx.fill();
         ctx.closePath();
     }
@@ -125,11 +125,11 @@
                     if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                         dy = -dy;
                         b.status = 0;
-                        /* ctx.beginPath();
-                        ctx.rect(b.x, b.y, brickWidth, brickHeight);
-                        ctx.fillStyle = "#CBFF09";
+                        ctx.beginPath();
+                        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+                        ctx.fillStyle = "#320179";
                         ctx.fill();
-                        ctx.closePath(); */
+                        ctx.closePath();
                     }
                 }
             }
