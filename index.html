@@ -33,8 +33,8 @@
     var ctx = canvas.getContext("2d");
     var x = canvas.width/2; //Définition du point de départ de la balle en Horizontalle
     var y = canvas.height-30; //Définition du point de départ de la balle en Verticale
-    var dx = 2; //Incrémentation
-    var dy = -2; //Décrémentation
+    var dx = 4; //Incrémentation
+    var dy = -4; //Décrémentation
     var ballRadius = 10; //Taille de la balle
     var paddleHeight = 10; //Hauteur du paddle
     var paddleWidth = 75; //Taille du paddle
@@ -193,8 +193,8 @@
                 else {
                     x = canvas.width/2;
                     y = canvas.height-30;
-                    dx = 2;
-                    dy = -2;
+                    dx = 4;
+                    dy = -4;
                     paddleX = (canvas.width-paddleWidth)/2;
                 }
             }
