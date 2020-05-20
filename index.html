@@ -50,6 +50,7 @@
     var brickOffsetLeft = 30;
     var gameOverNotify = document.querySelector('.game-over-notify');
     var score = 0;
+    var lives = 3;
 
     var bricks = [];
 
@@ -62,6 +63,7 @@
 
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("mousemove", mouseMoveHandler, false);
     /* gameOverNotify.addEventListener("click", function() {
         document.location.reload();
     }); */
@@ -149,6 +151,19 @@
         ctx.fillText("Score: "+score, 8, 20);
     }
 
+    function mouseMoveHandler(e) {
+        var relativeX = e.clientX - canvas.offsetLeft;
+        if (relativeX > 0 && relativeX < canvas.width) {
+            paddleX = relativeX - paddleWidth/2;        
+        }
+    }
+
+    function drawLives() {
+        ctx.font= "10px, Arial";
+        ctx.fillStyle = "red";
+        ctx.fillText("Vies :"+lives, canvas.width-65, 20);
+    }
+
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBall();
@@ -156,6 +171,7 @@
         drawBricks();
         collisionDetection();
         drawScore();
+        drawLives();
 
         if(y + dy < ballRadius) //Si la balle est supérieur à la limite de la fenêtre
         {
@@ -169,9 +185,20 @@
             }
             else
             {
-                alert("GAME OVER, Perdu Réessayez encore !");
-                document.location.reload();
-                clearInterval(interval);
+                lives--;
+                
+                if(!lives) {
+                    alert("GAME OVER, Perdu Réessayez encore !");
+                    document.location.reload();
+                    clearInterval(interval);
+                }
+                else {
+                    x = canvas.width/2;
+                    y = canvas.height-30;
+                    dx = 2;
+                    dy = -2;
+                    paddleX = (canvas.width-paddleWidth)/2;
+                }
             }
         }
 
