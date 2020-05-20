@@ -50,7 +50,7 @@
     var brickOffsetLeft = 30;
     var gameOverNotify = document.querySelector('.game-over-notify');
     var score = 0;
-    var lives = 3;
+    var lives = 4;
 
     var bricks = [];
 
@@ -137,7 +137,6 @@
                         if (score == (brickColumnCount * brickRowCount) * 2) {
                             alert("C'est gagné, Bravo!");
                             document.location.reload();
-                            clearInterval(interval); // Needed for Chrome to end game
                         }
                     }
                 }
@@ -190,7 +189,6 @@
                 if(!lives) {
                     alert("GAME OVER, Perdu Réessayez encore !");
                     document.location.reload();
-                    clearInterval(interval);
                 }
                 else {
                     x = canvas.width/2;
@@ -216,8 +214,10 @@
         
         x += dx;
         y += dy;
+        requestAnimationFrame(draw);
     }
-    interval = setInterval(draw, 10);
+    draw();
+    
 </script>
 
 </body>
