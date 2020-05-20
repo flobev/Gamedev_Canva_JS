@@ -131,8 +131,8 @@
                         ctx.fillStyle = "#320179";
                         ctx.fill();
                         ctx.closePath();
-                        score++;
-                        if (score == brickColumnCount * brickRowCount) {
+                        score+=2;
+                        if (score == (brickColumnCount * brickRowCount) * 2) {
                             alert("C'est gagné, Bravo!");
                             document.location.reload();
                             clearInterval(interval); // Needed for Chrome to end game
@@ -169,7 +169,7 @@
             }
             else
             {
-                alert("GAME OVER");
+                alert("GAME OVER, Perdu Réessayez encore !");
                 document.location.reload();
                 clearInterval(interval);
             }
